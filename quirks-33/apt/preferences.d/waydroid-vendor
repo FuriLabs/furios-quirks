@@ -1,11 +1,23 @@
 Package: waydroid-vendor-33
-Pin: release o=Droidian
+Pin: origin "repo.production.furilabs.com"
 Pin-Priority: 1003
 
 Package: waydroid-vendor-custom
-Pin: release o=Droidian
+Pin: origin "repo.production.furilabs.com"
 Pin-Priority: 100
 
 Package: waydroid-vendor-*
-Pin: release o=Droidian
+Pin: origin "repo.production.furilabs.com"
+Pin-Priority: -1
+
+Package: waydroid-vendor-33
+Pin: origin "repo.staging.furilabs.com"
+Pin-Priority: 1003
+
+Package: waydroid-vendor-custom
+Pin: origin "repo.staging.furilabs.com"
+Pin-Priority: 100
+
+Package: waydroid-vendor-*
+Pin: origin "repo.staging.furilabs.com"
 Pin-Priority: -1

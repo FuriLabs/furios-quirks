@@ -1,4 +1,4 @@
-# Droidian provides some empty packages to satisfy
+# FuriOS provides some empty packages to satisfy
 # dpkg and install custom downloaded Waydroid images.
 #
 # This feature is disabled by default, you can remove
@@ -7,5 +7,9 @@
 # packages.
 
 Package: waydroid-system-custom waydroid-vendor-custom
-Pin: release o=Droidian
+Pin: origin "repo.production.furilabs.com"
+Pin-Priority: -1
+
+Package: waydroid-system-custom waydroid-vendor-custom
+Pin: origin "repo.staging.furilabs.com"
 Pin-Priority: -1
