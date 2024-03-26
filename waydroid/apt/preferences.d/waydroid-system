@@ -7,9 +7,9 @@
 # packages.
 
 Package: waydroid-system-custom waydroid-vendor-custom
-Pin: origin "repo.production.furilabs.com"
+Pin: origin "production.repo.furios.io"
 Pin-Priority: -1
 
 Package: waydroid-system-custom waydroid-vendor-custom
-Pin: origin "repo.staging.furilabs.com"
+Pin: origin "staging.repo.furios.io"
 Pin-Priority: -1
