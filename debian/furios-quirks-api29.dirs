@@ -1,0 +1,3 @@
+/etc/apt/preferences.d
+/etc/gbinder.d/
+/usr/share/furios-quirks/apispecific/apt/

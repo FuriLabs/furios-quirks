@@ -1,0 +1,6 @@
+/usr/share/runonce/scripts/
+/usr/share/runonce/targets/
+/usr/bin
+/etc/pam.d
+/usr/lib/systemd
+/usr/lib/furios/quirks/keyring/

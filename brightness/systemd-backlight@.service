@@ -24,7 +24,7 @@ ConditionPathExists=!/system-update
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/lib/systemd/systemd-backlight load %i
-ExecStop=/usr/share/droidian-quirks/brightness/droidian-save-brightness.sh save %i
+ExecStop=/usr/share/furios-quirks/brightness/furios-save-brightness.sh save %i
 TimeoutSec=90s
 StateDirectory=systemd/backlight
 

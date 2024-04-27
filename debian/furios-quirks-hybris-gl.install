@@ -1,0 +1,2 @@
+hybris-gl/zz-furios.sh /etc/profile.d
+hybris-gl/zz-gles-shader-cache.sh /etc/profile.d

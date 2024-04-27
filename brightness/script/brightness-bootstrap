@@ -15,7 +15,7 @@ for candidate in ${BACKLIGHT_CANDIDATES}; do
 		continue
 	fi
 
-	/usr/share/droidian-quirks/brightness/droidian-save-brightness.sh bootstrap ${candidate}
+	/usr/share/furios-quirks/brightness/furios-save-brightness.sh bootstrap ${candidate}
 
 	systemctl enable systemd-backlight@${candidate}
 	systemctl daemon-reload

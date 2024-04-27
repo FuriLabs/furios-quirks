@@ -1,0 +1,5 @@
+device/furios-wcnss-enable.sh /usr/bin
+device/furios-boot-wlan.sh /usr/bin
+device/furios-ipa-enable.sh /usr/bin
+device/furios-lmk-disable.sh /usr/bin
+device/systemd-drop-ins/lxc.service.d/* /usr/lib/systemd/system/lxc.service.d

@@ -1,10 +1,11 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: droidian-quirks
-Source: https://github.com/droidian/droidian-quirks
+Upstream-Name: furios-quirks
+Source: https://github.com/furilabs/furios-quirks
 
 Files: *
 Copyright: 2020-2023 Giuseppe "r3vn" Corti <giuseppe.corti@protonmail.com>
            2020-2023 Eugenio "g7" Paolantonio <me@medesimo.eu>
+           2024 Bardia Moshiri <fakeshell@bardia.tech>
 License: BSD-3-clause
 
 Files: keyrings/pam.d/*
@@ -14,6 +15,7 @@ License: GPL-3+
 Files: debian/*
 Copyright: 2020-2023 Giuseppe "r3vn" Corti <giuseppe.corti@protonmail.com>
            2020-2023 Eugenio "g7" Paolantonio <me@medesimo.eu>
+           2024 Bardia Moshiri <fakeshell@bardia.tech>
 License: BSD-3-clause
 
 License: BSD-3-clause

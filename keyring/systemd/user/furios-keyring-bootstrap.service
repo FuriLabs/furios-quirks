@@ -1,0 +1,9 @@
+[Unit]
+Description=FuriOS keyring bootstrap
+ConditionPathExists=!%E/gnome-initial-setup-done
+
+[Service]
+Type=forking
+StandardError=journal
+ExecStart=/usr/bin/furios-keyring-bootstrap.sh
+Restart=on-failure

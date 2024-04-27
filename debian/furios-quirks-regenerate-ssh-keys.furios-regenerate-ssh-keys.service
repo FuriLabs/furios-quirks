@@ -1,0 +1,11 @@
+[Unit]
+Description=Regenerates SSH keys at first boot
+Before=ssh.service
+ConditionPathExists=!/etc/ssh/furios-keys-regenerated
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/furios-regenerate-ssh-keys.sh
+
+[Install]
+WantedBy=multi-user.target ssh.service

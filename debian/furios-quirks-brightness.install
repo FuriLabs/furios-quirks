@@ -1,0 +1,4 @@
+brightness/script/brightness-bootstrap /usr/share/runonce/scripts/
+brightness/target/brightness-bootstrap /usr/share/runonce/targets/
+brightness/furios-save-brightness.sh /usr/share/furios-quirks/brightness/
+brightness/systemd-backlight@.service  /usr/share/furios-quirks/brightness/
