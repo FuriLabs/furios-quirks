@@ -74,7 +74,7 @@ Description: Various quirks to enable device features at boot
 Package: furios-quirks-tls-padding
 Architecture: all
 Depends: libtls-padding0,
-         libdroidian-workarounds
+         libfurios-workarounds
 Description: Quirk to preload libtls-padding
  This package provides a quirk to allow preloading libtls-padding.
 
