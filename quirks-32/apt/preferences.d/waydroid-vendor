@@ -1,4 +1,4 @@
-Package: waydroid-vendor-31
+Package: waydroid-vendor-33
 Pin: origin "production.repo.furios.io"
 Pin-Priority: 1003
 
@@ -10,7 +10,7 @@ Package: waydroid-vendor-*
 Pin: origin "production.repo.furios.io"
 Pin-Priority: -1
 
-Package: waydroid-vendor-31
+Package: waydroid-vendor-33
 Pin: origin "staging.repo.furios.io"
 Pin-Priority: 1003
 
