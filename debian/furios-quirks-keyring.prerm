@@ -15,10 +15,30 @@ enable_keyring() {
 	fi
 }
 
+restore_pam_passwd() {
+	source="/etc/pam.d/passwd"
+	diversion="/usr/lib/furios/quirks/keyring/pam.d/passwd"
+
+	if [ -e "${diversion}" ]; then
+		rm -f "${source}"
+		dpkg-divert \
+			--rename \
+			--package furios-quirks-keyring \
+			--divert "${diversion}" \
+			--remove "${source}"
+
+		if [ -e "${diversion}" ]; then
+			mv "${diversion}" "${source}"
+		fi
+	fi
+}
+
 configure() {
 	enable_keyring pkcs11
 	enable_keyring secrets
 	enable_keyring ssh
+
+	restore_pam_passwd
 }
 
 case "$1" in
