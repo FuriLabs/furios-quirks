@@ -15,12 +15,31 @@ disable_keyring() {
 	fi
 }
 
+fix_pam_passwd() {
+	mkdir -p /usr/lib/furios/quirks/keyring/pam.d/
+
+	source="/etc/pam.d/passwd"
+	diversion="/usr/lib/furios/quirks/keyring/pam.d/passwd"
+
+	if [ ! -e "${diversion}" ] && [ -e "${source}" ]; then
+		dpkg-divert \
+			--rename \
+			--package furios-quirks-pam \
+			--divert "${diversion}" \
+			--add "${source}"
+	fi
+
+	cp /usr/share/furios-quirks/keyring/pam.d/passwd "${source}"
+}
+
 configure() {
 	runonce-queue keyring-bootstrap
 
 	disable_keyring pkcs11
 	disable_keyring secrets
 	disable_keyring ssh
+
+	fix_pam_passwd
 }
 
 case "$1" in
