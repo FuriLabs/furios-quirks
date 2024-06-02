@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Initialize waydroid on first init if it exist
+# as CI fails to initalize it
+
+set -e
+
+[ -f "/usr/bin/waydroid" ] && WAYDROID=true
+
+if [ "${WAYDROID}" == "true" ]; then
+	if [ ! -e "/dev/ashmem" ]; then
+		exit 0
+	fi
+
+	if [ ! -e "/dev/anbox-binder" ]; then
+		exit 0
+	fi
+
+	waydroid init -f || true
+fi

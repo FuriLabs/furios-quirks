@@ -1,1 +1,3 @@
 waydroid/apt/preferences.d/waydroid-system /etc/apt/preferences.d
+waydroid/runonce/script/waydroid-init /usr/share/runonce/scripts/
+waydroid/runonce/target/waydroid-init /usr/share/runonce/targets/
