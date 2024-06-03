@@ -3,3 +3,4 @@ keyring/runonce/target/keyring-bootstrap /usr/share/runonce/targets/
 keyring/furios-keyring-bootstrap.sh /usr/bin/
 keyring/pam.d/passwd /usr/share/furios-quirks/keyring/pam.d/
 keyring/systemd/* /usr/lib/systemd
+keyring/dbus-1/services/org.gnome.OnlineAccounts.service /usr/share/furios-quirks/keyring/dbus-1/services/

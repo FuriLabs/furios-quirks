@@ -4,3 +4,4 @@
 /usr/lib/systemd
 /usr/lib/furios/quirks/keyring/
 /usr/share/furios-quirks/keyring/pam.d/
+/usr/share/furios-quirks/keyring/dbus-1/services/

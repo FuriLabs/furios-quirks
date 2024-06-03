@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.gnome.OnlineAccounts
+Exec=/bin/bash -c "(timeout 15 grep --line-buffered -m1 PerformPrompt <(dbus-monitor --session) ; /usr/bin/gdbus call -e -d org.gnome.keyring -o /org/freedesktop/secrets/prompt/u1 -m org.freedesktop.Secret.Prompt.Dismiss) & /usr/libexec/goa-daemon"

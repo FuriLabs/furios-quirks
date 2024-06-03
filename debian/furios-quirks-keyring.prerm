@@ -33,12 +33,31 @@ restore_pam_passwd() {
 	fi
 }
 
+restore_goa_dbus() {
+	source="/usr/share/dbus-1/services/org.gnome.OnlineAccounts.service"
+	diversion="/usr/lib/furios/quirks/keyring/dbus-1/services/org.gnome.OnlineAccounts.service"
+
+	if [ -e "${diversion}" ]; then
+		rm -f "${source}"
+		dpkg-divert \
+			--rename \
+			--package furios-quirks-keyring \
+			--divert "${diversion}" \
+			--remove "${source}"
+
+		if [ -e "${diversion}" ]; then
+			mv "${diversion}" "${source}"
+		fi
+	fi
+}
+
 configure() {
 	enable_keyring pkcs11
 	enable_keyring secrets
 	enable_keyring ssh
 
 	restore_pam_passwd
+	restore_goa_dbus
 }
 
 case "$1" in
