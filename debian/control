@@ -192,3 +192,8 @@ Depends: ${misc:Depends}
 Description: Devtools specific quirks for FuriOS
  This package contains some devtools-specific quirks for
  FuriOS installations.
+
+Package: furios-quirks-polkit
+Architecture: all
+Depends: ${misc:Depends}
+Description: Polkit policy to allow unprivileged access to phone components by furios user

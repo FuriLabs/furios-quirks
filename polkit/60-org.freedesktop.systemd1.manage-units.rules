@@ -1,0 +1,14 @@
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.systemd1.manage-units" ||
+         action.id == "org.freedesktop.systemd1.restart-unit" ||
+         action.id == "org.freedesktop.systemd1.stop-unit" ||
+         action.id == "org.freedesktop.systemd1.start-unit") &&
+        (action.lookup("unit") == "nfcd.service" ||
+         action.lookup("unit") == "batman.service" ||
+         action.lookup("unit") == "ofono.service" ||
+         action.lookup("unit") == "ModemManager.service" ||
+         action.lookup("unit") == "waydroid-container.service") &&
+        subject.user == "furios") {
+        return polkit.Result.YES;
+    }
+});
