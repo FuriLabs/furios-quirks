@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+configure() {
+	runonce-queue waydroid-init
+
+}
+
+case "$1" in
+	"configure")
+		configure
+		;;
+esac
