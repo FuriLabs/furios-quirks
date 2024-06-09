@@ -8,13 +8,29 @@ set -e
 [ -f "/usr/bin/waydroid" ] && WAYDROID=true
 
 if [ "${WAYDROID}" == "true" ]; then
-	if [ ! -e "/dev/ashmem" ]; then
-		exit 0
-	fi
+	# waydroid needs this to init
+	while [ ! -e "/dev/ashmem" ]; do
+		echo "Waiting for /dev/ashmem to appear..."
+		sleep 1
+	done
 
-	if [ ! -e "/dev/anbox-binder" ]; then
-		exit 0
-	fi
+	# waydroid also needs this to init
+	while [ ! -e "/dev/anbox-binder" ]; do
+		echo "Waiting for /dev/anbox-binder to appear..."
+		sleep 1
+	done
+
+	# this one comes from waydroid itself, needed to detect if device is halium or mainline
+	while true; do
+		vndk_version=$(getprop ro.vndk.version)
+		if [ -n "$vndk_version" ] && [ "$vndk_version" -ge 19 ]; then
+			break
+		fi
+		sleep 1
+	done
+
+	# waydroid checks for IAllocator to detect what gralloc and it should use, without, it initializes to early and chooses swiftshader
+	binder-wait android.hardware.graphics.allocator@4.0::IAllocator/default
 
 	waydroid init -f || true
 fi
