@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p "/run/systemd/user/gnome-initial-setup-first-login.service.wants"
-ln -s "/usr/lib/systemd/user/droidian-keyring-bootstrap.service" "/run/systemd/user/gnome-initial-setup-first-login.service.wants/droidian-keyring-bootstrap.service"
+mkdir -p "/run/systemd/user/gnome-session.target.wants"
+ln -s "/usr/lib/systemd/user/furios-keyring-bootstrap.service" "/run/systemd/user/gnome-session.target.wants/furios-keyring-bootstrap.service"
 
 systemctl daemon-reload

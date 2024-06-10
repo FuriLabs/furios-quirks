@@ -1,6 +1,6 @@
 [Unit]
 Description=FuriOS keyring bootstrap
-ConditionPathExists=!%E/gnome-initial-setup-done
+ConditionPathExists=!%E/keyring-setup-done
 
 [Service]
 Type=forking
