@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# reconfigure vulkan on first startup
+
+set -e
+
+if dpkg -s libhybris-vulkan; then
+	dpkg-reconfigure libhybris-vulkan
+fi
+
+exit 0

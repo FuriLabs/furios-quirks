@@ -1,0 +1,2 @@
+vulkan/runonce/script/configure-vulkan /usr/share/runonce/scripts/
+vulkan/runonce/target/configure-vulkan /usr/share/runonce/targets/
