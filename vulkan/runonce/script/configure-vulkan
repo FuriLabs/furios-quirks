@@ -8,4 +8,7 @@ if dpkg -s libhybris-vulkan; then
 	dpkg-reconfigure libhybris-vulkan
 fi
 
-exit 0
+# we want this to run every boot
+runonce-queue configure-vulkan
+
+exit 1
