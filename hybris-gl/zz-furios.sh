@@ -18,3 +18,6 @@ export WEBKIT_DISABLE_DMABUF_RENDERER=1
 
 # Force gles on gstreamer and video players
 export GST_GL_API=gles2
+
+# Force gles on glfw3
+export GLFW_CLIENT_API=GLFW_OPENGL_ES_API
