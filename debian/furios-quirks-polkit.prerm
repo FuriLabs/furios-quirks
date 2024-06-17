@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e
+
+restore_polkit_packagekit() {
+	source="/usr/share/polkit-1/actions/org.freedesktop.packagekit.policy"
+	diversion="/usr/lib/furios/quirks/polkit/org.freedesktop.packagekit.policy"
+
+	if [ -e "${diversion}" ]; then
+		rm -f "${source}"
+		dpkg-divert \
+			--rename \
+			--package furios-quirks-polkit \
+			--divert "${diversion}" \
+			--remove "${source}"
+
+		if [ -e "${diversion}" ]; then
+			mv "${diversion}" "${source}"
+		fi
+	fi
+}
+
+configure() {
+	restore_polkit_packagekit
+}
+
+case "$1" in
+	"remove")
+		configure
+		;;
+esac

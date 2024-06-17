@@ -1,0 +1,29 @@
+#!/bin/sh
+set -e
+
+fix_packagekit_polkit() {
+	mkdir -p /usr/lib/furios/quirks/polkit/
+
+	source="/usr/share/polkit-1/actions/org.freedesktop.packagekit.policy"
+	diversion="/usr/lib/furios/quirks/polkit/org.freedesktop.packagekit.policy"
+
+	if [ ! -e "${diversion}" ] && [ -e "${source}" ]; then
+		dpkg-divert \
+			--rename \
+			--package furios-quirks-polkit \
+			--divert "${diversion}" \
+			--add "${source}"
+	fi
+
+	cp /usr/share/furios-quirks/polkit/org.freedesktop.packagekit.policy "${source}"
+}
+
+configure() {
+	fix_packagekit_polkit
+}
+
+case "$1" in
+	"configure")
+		configure
+		;;
+esac
