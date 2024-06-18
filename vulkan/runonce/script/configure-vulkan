@@ -1,11 +1,21 @@
 #!/bin/bash
 #
-# reconfigure vulkan on first startup
+# reconfigure vulkan at every boot
 
 set -e
 
-if dpkg -s libhybris-vulkan; then
-	dpkg-reconfigure libhybris-vulkan
+while [ ! -e "/dev/hwbinder" ]; do
+	echo "Waiting for /dev/hwbinder to appear..."
+	sleep 1
+done
+
+# wait for composer to come up first
+binder-wait android.hardware.graphics.composer@2.1::IComposer/default || true
+
+if dpkg -s libhybris-vulkan &> /dev/null; then
+	export DEBIAN_FRONTEND=noninteractive
+	dpkg-reconfigure -fnoninteractive libhybris-vulkan
+	ls -lha /usr/lib/$(awk 'BEGIN { FS = "[ ()-]"; "bash --version" | getline; OFS = "-"; if (/bash/) print $9, $11, $12 }')/libvulkan.so.1*
 fi
 
 # we want this to run every boot
