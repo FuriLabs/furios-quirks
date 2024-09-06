@@ -4,6 +4,18 @@
 
 set -e
 
+TRIPLET=$(awk 'BEGIN { FS = "[ ()-]"; "bash --version" | getline; OFS = "-"; if (/bash/) print $9, $11, $12 }')
+
+# disable hybris vulkan for now
+DEBIAN_VULKAN=$(ls /usr/lib/${TRIPLET}/ | grep libvulkan.so.1.| grep -v 1.2.183) # 1.2.183 is current hybris vulkan version
+if [ ! -z ${DEBIAN_VULKAN} ]; then
+        [ -f /usr/lib/${TRIPLET}/libvulkan-hybris.so ] && rm /usr/lib/${TRIPLET}/libvulkan-hybris.so
+        ln -sf /usr/lib/${TRIPLET}/${DEBIAN_VULKAN} /usr/lib/${TRIPLET}/libvulkan.so.1
+        echo "Restored debian libvulkan ${DEBIAN_VULKAN}"
+fi
+
+exit 0
+
 while [ ! -e "/dev/hwbinder" ]; do
 	echo "Waiting for /dev/hwbinder to appear..."
 	sleep 1
@@ -15,7 +27,7 @@ binder-wait android.hardware.graphics.composer@2.1::IComposer/default || true
 if dpkg -s libhybris-vulkan &> /dev/null; then
 	export DEBIAN_FRONTEND=noninteractive
 	dpkg-reconfigure -fnoninteractive libhybris-vulkan
-	ls -lha /usr/lib/$(awk 'BEGIN { FS = "[ ()-]"; "bash --version" | getline; OFS = "-"; if (/bash/) print $9, $11, $12 }')/libvulkan.so.1*
+	ls -lha /usr/lib/${TRIPLET}/libvulkan.so.1*
 fi
 
 # we want this to run every boot
