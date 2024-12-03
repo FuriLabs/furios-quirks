@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Initialize waydroid on first init if it exist
+# Initialize waydroid on first boot if it exists
 # as CI fails to initalize it
 
 set -e
@@ -29,8 +29,24 @@ if [ "${WAYDROID}" == "true" ]; then
 		sleep 1
 	done
 
-	# waydroid checks for IAllocator to detect what gralloc and it should use, without, it initializes to early and chooses swiftshader
+	# waydroid checks for IAllocator to detect which gralloc it should use, without that it initializes too early and chooses swiftshader
 	binder-wait android.hardware.graphics.allocator@4.0::IAllocator/default
 
 	waydroid init -f || true
+
+	# now restart all services
+	if [ -f "/usr/lib/systemd/system/waydroid-container.service" ]; then
+		systemctl restart waydroid-container || true
+		sleep 1
+	fi
+
+	if [ -f "/usr/lib/systemd/system/waydroid-sensors.service" ]; then
+		systemctl restart waydroid-sensors || true
+		sleep 1
+	fi
+
+	if [ -f "/usr/lib/systemd/system/waydroid-notification-server.service" ]; then
+		systemctl restart waydroid-notification-server.service || true
+		sleep 1
+	fi
 fi
