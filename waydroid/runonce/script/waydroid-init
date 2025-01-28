@@ -49,4 +49,9 @@ if [ "${WAYDROID}" == "true" ]; then
 		systemctl restart waydroid-notification-server.service || true
 		sleep 1
 	fi
+
+	if [ -f "/usr/lib/systemd/system/waydroid-statechange-server.service" ]; then
+		systemctl restart waydroid-statechange-server.service || true
+		sleep 1
+	fi
 fi
