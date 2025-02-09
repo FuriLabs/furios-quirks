@@ -6,8 +6,8 @@ export COGL_DISABLE_MAPBUFFERRANGE=true
 # Force gles on gdk
 export GDK_GL=gles
 
-# Force gl backend instead of ngl
-export GSK_RENDERER=gl
+# Use ngl now that its functional again
+export GSK_RENDERER=ngl
 
 # Disable webkitgtk bwrap sandbox for now
 export WEBKIT_FORCE_SANDBOX=0
