@@ -1,26 +1,27 @@
 #!/bin/bash
 #
-# Initialize waydroid on first boot if it exists
+# Initialize andromeda on first boot if it exists
 # as CI fails to initalize it
 
 set -e
 
 [ -f "/usr/bin/waydroid" ] && WAYDROID=true
+[ -f "/usr/bin/andromeda" ] && ANDROMEDA=true
 
-if [ "${WAYDROID}" == "true" ]; then
-	# waydroid needs this to init
+if [ "${WAYDROID}" == "true" ] || [ "${ANDROMEDA}" == "true" ]; then
+	# andromeda needs this to init
 	while [ ! -e "/dev/ashmem" ]; do
 		echo "Waiting for /dev/ashmem to appear..."
 		sleep 1
 	done
 
-	# waydroid also needs this to init
+	# andromeda also needs this to init
 	while [ ! -e "/dev/anbox-binder" ]; do
 		echo "Waiting for /dev/anbox-binder to appear..."
 		sleep 1
 	done
 
-	# this one comes from waydroid itself, needed to detect if device is halium or mainline
+	# this one comes from andromeda itself, needed to detect if device is halium or mainline
 	while true; do
 		vndk_version=$(getprop ro.vndk.version)
 		if [ -n "$vndk_version" ] && [ "$vndk_version" -ge 19 ]; then
@@ -29,12 +30,40 @@ if [ "${WAYDROID}" == "true" ]; then
 		sleep 1
 	done
 
-	# waydroid checks for IAllocator to detect which gralloc it should use, without that it initializes too early and chooses swiftshader
+	# Andromeda checks for IAllocator to detect which gralloc it should use, without that it initializes too early and chooses swiftshader
 	binder-wait android.hardware.graphics.allocator@4.0::IAllocator/default
 
-	waydroid init -f || true
+	if which -s andromeda; then
+		andromeda init -f || true
+	fi
+
+	# Deprecated
+	if which -s waydroid; then
+		waydroid init -f || true
+	fi
 
 	# now restart all services
+	if [ -f "/usr/lib/systemd/system/andromeda-container.service" ]; then
+		systemctl restart andromeda-container || true
+		sleep 1
+        fi
+
+	if [ -f "/usr/lib/systemd/system/andromeda-sensors.service" ]; then
+		systemctl restart andromeda-sensors || true
+		sleep 1
+	fi
+
+	if [ -f "/usr/lib/systemd/system/andromeda-notification-server.service" ]; then
+		systemctl restart andromeda-notification-server.service || true
+		sleep 1
+	fi
+
+	if [ -f "/usr/lib/systemd/system/andromeda-statechange-server.service" ]; then
+		systemctl restart andromeda-statechange-server.service || true
+		sleep 1
+	fi
+
+	# Deprecated
 	if [ -f "/usr/lib/systemd/system/waydroid-container.service" ]; then
 		systemctl restart waydroid-container || true
 		sleep 1
