@@ -1,0 +1,15 @@
+Package: andromeda-vendor-33
+Pin: origin "production.repo.furios.io"
+Pin-Priority: 1003
+
+Package: andromeda-vendor-*
+Pin: origin "production.repo.furios.io"
+Pin-Priority: -1
+
+Package: andromeda-vendor-33
+Pin: origin "staging.repo.furios.io"
+Pin-Priority: 1003
+
+Package: andromeda-vendor-*
+Pin: origin "staging.repo.furios.io"
+Pin-Priority: -1

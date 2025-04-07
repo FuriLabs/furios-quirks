@@ -3,7 +3,7 @@ Maintainer: Bardia Moshiri <fakeshell@bardia.tech>
 Section: misc
 Priority: optional
 Build-Depends: debhelper-compat (= 13)
-Standards-Version: 4.5.0.3
+Standards-Version: 4.7.0
 Vcs-Browser: https://github.com/furilabs/furios-quirks
 Vcs-Git: https://github.com/furilabs/furios-quirks.git
 
@@ -85,14 +85,6 @@ Description: Quirk to set xtables-legacy as the default iptables implementation
  This package provides a quirk that sets xtables-legacy as the
  default iptables implementation.
 
-Package: furios-quirks-initial-setup
-Architecture: all
-Pre-Depends: gnome-initial-setup, runonce
-Depends: phosh-tour
-Description: Quirk to configure the initial setup wizard
- This package provides a quirk that configures the initial
- setup wizard.
-
 Package: furios-quirks-regenerate-ssh-keys
 Architecture: all
 Pre-Depends: openssh-server
@@ -134,27 +126,6 @@ Architecture: all
 Description: Various quirks for the FuriOS flavour of Waydroid
  This package provides various quriks for the FuriOS flavour
  of Waydroid.
-
-Package: furios-quirks-api28
-Architecture: all
-Depends: libgbinder
-Description: Various generic quirks for API 28 (P) devices
- This package contains various generic quirks for adaptations
- based on Android API 28 (P).
-
-Package: furios-quirks-api29
-Architecture: all
-Depends: libgbinder
-Description: Various generic quirks for API 29 (Q) devices
- This package contains various generic quirks for adaptations
- based on Android API 29 (Q).
-
-Package: furios-quirks-api30
-Architecture: all
-Depends: libgbinder
-Description: Various generic quirks for API 30 (R) devices
- This package contains various generic quirks for adaptations
- based on Android API 30 (R).
 
 Package: furios-quirks-api32
 Architecture: all

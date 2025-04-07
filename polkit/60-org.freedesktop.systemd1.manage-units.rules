@@ -7,7 +7,7 @@ polkit.addRule(function(action, subject) {
          action.lookup("unit") == "batman.service" ||
          action.lookup("unit") == "ofono.service" ||
          action.lookup("unit") == "ModemManager.service" ||
-         action.lookup("unit") == "waydroid-container.service") &&
+         action.lookup("unit") == "andromeda-container.service") &&
         subject.user == "furios") {
         return polkit.Result.YES;
     }

@@ -5,10 +5,9 @@
 
 set -e
 
-[ -f "/usr/bin/waydroid" ] && WAYDROID=true
 [ -f "/usr/bin/andromeda" ] && ANDROMEDA=true
 
-if [ "${WAYDROID}" == "true" ] || [ "${ANDROMEDA}" == "true" ]; then
+if [ "${ANDROMEDA}" == "true" ]; then
 	# andromeda needs this to init
 	while [ ! -e "/dev/ashmem" ]; do
 		echo "Waiting for /dev/ashmem to appear..."
@@ -37,11 +36,6 @@ if [ "${WAYDROID}" == "true" ] || [ "${ANDROMEDA}" == "true" ]; then
 		andromeda init -f || true
 	fi
 
-	# Deprecated
-	if which -s waydroid; then
-		waydroid init -f || true
-	fi
-
 	# now restart all services
 	if [ -f "/usr/lib/systemd/system/andromeda-container.service" ]; then
 		systemctl restart andromeda-container || true
@@ -60,27 +54,6 @@ if [ "${WAYDROID}" == "true" ] || [ "${ANDROMEDA}" == "true" ]; then
 
 	if [ -f "/usr/lib/systemd/system/andromeda-statechange-server.service" ]; then
 		systemctl restart andromeda-statechange-server.service || true
-		sleep 1
-	fi
-
-	# Deprecated
-	if [ -f "/usr/lib/systemd/system/waydroid-container.service" ]; then
-		systemctl restart waydroid-container || true
-		sleep 1
-	fi
-
-	if [ -f "/usr/lib/systemd/system/waydroid-sensors.service" ]; then
-		systemctl restart waydroid-sensors || true
-		sleep 1
-	fi
-
-	if [ -f "/usr/lib/systemd/system/waydroid-notification-server.service" ]; then
-		systemctl restart waydroid-notification-server.service || true
-		sleep 1
-	fi
-
-	if [ -f "/usr/lib/systemd/system/waydroid-statechange-server.service" ]; then
-		systemctl restart waydroid-statechange-server.service || true
 		sleep 1
 	fi
 fi

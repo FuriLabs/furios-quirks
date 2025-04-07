@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir -p "/run/systemd/user/gnome-session-manager.target.wants"
-ln -s "/usr/lib/systemd/user/phosh-tour.service" "/run/systemd/user/gnome-session-manager.target.wants/phosh-tour.service"
-
-systemctl daemon-reload
