@@ -5,7 +5,7 @@
 
 set -e
 
-PREFERRED_HOSTNAME_FILES="/usr/lib/droidian/device/preferred-hostname /var/lib/droidian/preferred_hostname"
+PREFERRED_HOSTNAME_FILES="/usr/lib/furios/device/preferred-hostname"
 ANDROID_VENDOR_PROPS="/vendor/build.prop"
 
 for file in ${PREFERRED_HOSTNAME_FILES}; do
