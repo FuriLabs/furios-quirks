@@ -23,8 +23,4 @@ configure() {
 	restore_polkit_packagekit
 }
 
-case "$1" in
-	"remove")
-		configure
-		;;
-esac
+configure
