@@ -3,3 +3,4 @@
 /dev/null /etc/systemd/user/pipewire-pulse.socket
 /dev/null /etc/systemd/user/wireplumber.service
 /dev/null /etc/systemd/system/power-profiles-daemon.service
+/dev/null /etc/systemd/system/gdm3.service
