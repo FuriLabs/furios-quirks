@@ -123,9 +123,7 @@ Description: Various quirks and FuriOS-specific settings for firefox
 
 Package: furios-quirks-waydroid
 Architecture: all
-Description: Various quirks for the FuriOS flavour of Waydroid
- This package provides various quriks for the FuriOS flavour
- of Waydroid.
+Description: Quirk to initialize Andromeda on device
 
 Package: furios-quirks-api32
 Architecture: all
