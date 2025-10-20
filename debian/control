@@ -116,10 +116,7 @@ Description: Quirk to bootstrap and properly save brightness level
 
 Package: furios-quirks-firefox
 Architecture: all
-Pre-Depends: firefox-esr | firefox
-Description: Various quirks and FuriOS-specific settings for firefox
- This package provides various quirks and FuriOS-specific settings
- for Mozilla Firefox.
+Description: Various quirks and FuriOS-specific settings for firefox - this is a transitional package
 
 Package: furios-quirks-waydroid
 Architecture: all
