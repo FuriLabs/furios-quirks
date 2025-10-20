@@ -120,6 +120,8 @@ Description: Various quirks and FuriOS-specific settings for firefox - this is a
 
 Package: furios-quirks-waydroid
 Architecture: all
+Pre-Depends: runonce,
+             andromeda,
 Description: Quirk to initialize Andromeda on device
 
 Package: furios-quirks-api32
