@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Set default OSK provider
+
+set -e
+
+[ -f "/usr/bin/phosh-osk-stevia" ] && OSK=true
+
+if [ "${OSK}" == "true" ]; then
+	if [ -f /usr/share/phosh-osk-stevia/mobi.phosh.Stevia.desktop ]; then
+		update-alternatives --set Phosh-OSK /usr/share/phosh-osk-stevia/mobi.phosh.Stevia.desktop
+	fi
+fi

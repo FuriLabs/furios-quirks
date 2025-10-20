@@ -173,3 +173,9 @@ Package: furios-quirks-vulkan
 Architecture: all
 Depends: ${misc:Depends}
 Description: libhybris vulkan configure script on first startup
+
+Package: furios-quirks-osk
+Architecture: all
+Pre-Depends: runonce,
+             phosh-osk-stevia,
+Description: Quirk to configure OSK on device
