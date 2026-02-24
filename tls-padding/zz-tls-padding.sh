@@ -1,4 +1,4 @@
-LIBRARY="libtls-padding.so:libgtk6216workaround.so"
+LIBRARY="libtls-padding.so"
 
 case "${LD_PRELOAD}" in
 	*${LIBRARY}*)
