@@ -18,3 +18,6 @@ export GST_GL_API=gles2
 
 # Force gles on glfw3
 export GLFW_CLIENT_API=GLFW_OPENGL_ES_API
+
+# Force gl on gsk
+export GSK_RENDERER=gl
