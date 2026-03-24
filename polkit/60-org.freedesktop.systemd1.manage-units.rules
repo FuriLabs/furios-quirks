@@ -8,8 +8,9 @@ polkit.addRule(function(action, subject) {
          action.lookup("unit") == "ofono.service" ||
          action.lookup("unit") == "ModemManager.service" ||
          action.lookup("unit") == "geoclue.service" ||
-         action.lookup("unit") == "andromeda-container.service") &&
-        subject.user == "furios") {
+         action.lookup("unit") == "andromeda-container.service" ||
+         action.lookup("unit") == "displaylink-driver.service") &&
+        subject.uid == 32011) {
         return polkit.Result.YES;
     }
 });
