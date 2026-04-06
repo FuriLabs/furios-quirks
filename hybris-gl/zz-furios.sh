@@ -21,3 +21,6 @@ export GLFW_CLIENT_API=GLFW_OPENGL_ES_API
 
 # Force gl on gsk
 export GSK_RENDERER=gl
+
+# Disable firefox crash reporter
+export MOZ_CRASHREPORTER_DISABLE=1
