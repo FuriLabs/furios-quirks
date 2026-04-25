@@ -166,11 +166,6 @@ Architecture: all
 Depends: ${misc:Depends}
 Description: Polkit policy to allow unprivileged access to phone components by furios user
 
-Package: furios-quirks-vulkan
-Architecture: all
-Depends: ${misc:Depends}
-Description: libhybris vulkan configure script on first startup
-
 Package: furios-quirks-osk
 Architecture: all
 Pre-Depends: runonce,
