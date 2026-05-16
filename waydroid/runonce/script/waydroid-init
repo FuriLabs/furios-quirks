@@ -21,13 +21,24 @@ if [ "${ANDROMEDA}" == "true" ]; then
 	done
 
 	# this one comes from andromeda itself, needed to detect if device is halium or mainline
-	while true; do
-		vndk_version=$(getprop ro.vndk.version)
-		if [ -n "$vndk_version" ] && [ "$vndk_version" -ge 19 ]; then
-			break
+	if [ -f "/vendor/build.prop" ]; then
+		vndk_version=$(grep '^ro.vndk.version=' /vendor/build.prop | cut -d'=' -f2)
+
+		if [ -z "$vndk_version" ]; then
+			echo "ro.vndk.version not found"
+			exit 0
 		fi
-		sleep 1
-	done
+
+		if [ "$vndk_version" -lt 19 ]; then
+			echo "Unsupported VNDK version: $vndk_version"
+			exit 0
+		fi
+	else
+		echo "build.prop does not exist"
+		exit 0
+	fi
+
+	sleep 10
 
 	# Andromeda checks for IAllocator to detect which gralloc it should use, without that it initializes too early and chooses swiftshader
 	binder-wait android.hardware.graphics.allocator@4.0::IAllocator/default
