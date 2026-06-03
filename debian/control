@@ -146,8 +146,8 @@ Description: Various gnome variables
 
 Package: furios-quirks-systemd
 Architecture: all
+Pre-Depends: systemd
 Depends: ${misc:Depends}
-Conflicts: mobian-tweaks-common
 Description: Various systemd quirks
 
 Package: furios-quirks-devtools

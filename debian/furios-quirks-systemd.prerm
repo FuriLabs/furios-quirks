@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+remove() {
+	furios_quirks="/usr/lib/furios/quirks/systemd"
+	source="/usr/share/dbus-1/system.d/org.freedesktop.locale1.read-only.conf"
+	diversion="${furios_quirks}/org.freedesktop.locale1.read-only.conf"
+
+	if [ -e "${diversion}" ] && [ ! -e "${source}" ]; then
+		dpkg-divert \
+			--rename \
+			--package furios-quirks-systemd \
+			--divert "${diversion}" \
+			--remove "${source}"
+	fi
+}
+
+case "$1" in
+	"remove")
+		remove
+		;;
+esac

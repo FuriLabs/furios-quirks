@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+configure() {
+	furios_quirks="/usr/lib/furios/quirks/systemd"
+	source="/usr/share/dbus-1/system.d/org.freedesktop.locale1.read-only.conf"
+	diversion="${furios_quirks}/org.freedesktop.locale1.read-only.conf"
+
+	mkdir -p "${furios_quirks}"
+
+	if ! dpkg-divert --list | grep -q "${source}"; then
+		if [ ! -e "${diversion}" ] && [ -e "${source}" ]; then
+			dpkg-divert \
+				--rename \
+				--package furios-quirks-systemd \
+				--divert "${diversion}" \
+				--add "${source}"
+		fi
+	fi
+}
+
+case "$1" in
+	"configure")
+		configure
+		;;
+esac
