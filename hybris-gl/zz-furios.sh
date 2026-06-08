@@ -24,3 +24,6 @@ export GSK_RENDERER=gl
 
 # Disable firefox crash reporter
 export MOZ_CRASHREPORTER_DISABLE=1
+
+# Disable GPU in QT web engine for now
+export QTWEBENGINE_CHROMIUM_FLAGS="--disable-gpu"
