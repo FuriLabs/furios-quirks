@@ -7,17 +7,23 @@ export COGL_DISABLE_MAPBUFFERRANGE=true
 export GDK_GL=gles
 
 # Disable webkitgtk bwrap sandbox for now
-export WEBKIT_FORCE_SANDBOX=0
 export WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1
 
-# Disable webkitgtk DMA-BUF renderer
-export WEBKIT_DISABLE_DMABUF_RENDERER=1
+# Force GLVND to use hybris EGL.
+#
+# WebKitGTK probes displays in this order:
+#   1. GBM
+#   2. Surfaceless
+#   3. EGL_DEFAULT_DISPLAY
+#
+# hybris does not provide a GBM platform, so WebKitGTK falls back
+# to Mesa's surfaceless EGL implementation before reaching
+# EGL_DEFAULT_DISPLAY. This results in Mesa swrast/llvmpipe being
+# selected instead of hybris EGL breaking GPU acceleration.
+export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_libhybris.json
 
 # Force gles on gstreamer and video players
 export GST_GL_API=gles2
-
-# Force gles on glfw3
-export GLFW_CLIENT_API=GLFW_OPENGL_ES_API
 
 # Force gl on gsk
 export GSK_RENDERER=gl
