@@ -3,6 +3,9 @@ set -e
 
 disable_keyring() {
 	component="${1}"
+
+	mkdir -p /usr/lib/furios/quirks/keyring
+
 	source="/etc/xdg/autostart/gnome-keyring-${component}.desktop"
 	diversion="/usr/lib/furios/quirks/keyring/gnome-keyring-${component}.desktop"
 
