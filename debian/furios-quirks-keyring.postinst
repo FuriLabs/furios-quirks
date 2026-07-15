@@ -35,21 +35,22 @@ fix_pam_passwd() {
 	cp /usr/share/furios-quirks/keyring/pam.d/passwd "${source}"
 }
 
-fix_goa_dbus() {
-	mkdir -p /usr/lib/furios/quirks/keyring/dbus-1/services
-
+restore_goa_dbus() {
 	source="/usr/share/dbus-1/services/org.gnome.OnlineAccounts.service"
 	diversion="/usr/lib/furios/quirks/keyring/dbus-1/services/org.gnome.OnlineAccounts.service"
 
-	if [ ! -e "${diversion}" ] && [ -e "${source}" ]; then
+	if [ -e "${diversion}" ]; then
+		rm -f "${source}"
 		dpkg-divert \
 			--rename \
 			--package furios-quirks-keyring \
 			--divert "${diversion}" \
-			--add "${source}"
-	fi
+			--remove "${source}"
 
-	cp /usr/share/furios-quirks/keyring/dbus-1/services/org.gnome.OnlineAccounts.service "${source}"
+		if [ -e "${diversion}" ]; then
+			mv "${diversion}" "${source}"
+		fi
+	fi
 }
 
 configure() {
@@ -60,7 +61,8 @@ configure() {
 	disable_keyring ssh
 
 	fix_pam_passwd
-	fix_goa_dbus
+
+	restore_goa_dbus
 }
 
 case "$1" in
