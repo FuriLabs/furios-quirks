@@ -25,6 +25,10 @@ export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_libhybris
 # Force gles on gstreamer and video players
 export GST_GL_API=gles2
 
+# Decode H.264 and VP9 in software. droidvdec decodes no valid H.264 frames and
+# v4l2vp9dec hangs on VP9, so without this those files do not play at all.
+export GST_PLUGIN_FEATURE_RANK=droidvdec:NONE,v4l2vp9dec:NONE
+
 # Force gl on gsk
 export GSK_RENDERER=gl
 
